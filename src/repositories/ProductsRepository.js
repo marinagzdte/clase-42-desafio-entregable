@@ -30,8 +30,7 @@ export default class ProductsRepository {
     }
 
     async removeById(id) {
-        const removida = await this.#dao.deleteById(id)
-        return new Product(removida)
+        await this.#dao.deleteById(id)
     }
 
     async removeAll() {

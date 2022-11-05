@@ -19,8 +19,9 @@ const updateProductById = async (req, res) => {
 }
 
 const deleteProductById = async (req, res) => {
-
-    res.json({});
+    await productsRepo.removeById(req.params.id);
+    res.status(204);
+    res.send();
 }
 
 const addProduct = async (req, res) => {
