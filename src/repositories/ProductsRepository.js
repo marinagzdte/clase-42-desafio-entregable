@@ -20,6 +20,10 @@ export default class ProductsRepository {
         return new Product(dto)
     }
 
+    async modifyById(id, prod) {
+        await this.#dao.modifyItemById(id, prod);
+    }
+
     async add(doc) {
         await this.#dao.save(asDto(doc))
     }
