@@ -5,10 +5,7 @@ import passport from './middlewares/passport.js';
 import { engine } from 'express-handlebars';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import registerRouter from './routes/registerRouter.js';
-import loginRouter from './routes/loginRouter.js';
-import infoRouter from './routes/infoRouter.js';
-import randomNumberRouter from './routes/randomNumberRouter.js';
+import sessionRouter from './routes/sessionRouter.js';
 import compression from 'compression';
 import logger from './utils/logger.js';
 import ProductsRepository from './repositories/ProductsRepository.js';
@@ -54,25 +51,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
-app.use(registerRouter)
-app.use(loginRouter)
-app.use(infoRouter)
-app.use(randomNumberRouter)
-
-const checkAuth = (req, res, next) => {
-    if (req.isAuthenticated())
-        next();
-    else
-        res.redirect('/login');
-}
-
-/*-----------------------------------------------*/
-/*                   routes                      */
-/*-----------------------------------------------*/
-
-app.get('/', checkAuth, (req, res) => {
-    res.render('main', { name: req.user.name, username: req.user.username });
-});
+app.use(sessionRouter)
+//app.use(productRouter)
 
 app.all('*', logger.logReqWarn, (req, res) => {
     res.send('Ruta y metodo no implementados.')
