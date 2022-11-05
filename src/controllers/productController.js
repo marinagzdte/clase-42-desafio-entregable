@@ -24,8 +24,8 @@ const deleteProductById = async (req, res) => {
 }
 
 const addProduct = async (req, res) => {
-
-    res.json({});
+    const id = await productsRepo.add(req.body)
+    res.json({ id });
 }
 
 export { getAllProducts, getProductById, updateProductById, deleteProductById, addProduct }

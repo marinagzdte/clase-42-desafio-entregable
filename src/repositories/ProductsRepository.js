@@ -25,7 +25,8 @@ export default class ProductsRepository {
     }
 
     async add(doc) {
-        await this.#dao.save(asDto(doc))
+        const id = await this.#dao.save(asDto(doc))
+        return id
     }
 
     async removeById(id) {
