@@ -18,6 +18,12 @@ const updateProductById = async (req, res) => {
     res.send();
 }
 
+const deleteAllProducts = async (req, res) => {
+    await productsRepo.removeAll();
+    res.status(204)
+    res.send();
+}
+
 const deleteProductById = async (req, res) => {
     await productsRepo.removeById(req.params.id);
     res.status(204);
@@ -29,4 +35,4 @@ const addProduct = async (req, res) => {
     res.json({ id });
 }
 
-export { getAllProducts, getProductById, updateProductById, deleteProductById, addProduct }
+export { getAllProducts, getProductById, updateProductById, deleteAllProducts, deleteProductById, addProduct }
