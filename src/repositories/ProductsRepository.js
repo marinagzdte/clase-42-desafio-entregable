@@ -1,6 +1,7 @@
 import Product from '../models/Product.js'
 import ProductsDaoFactory from '../daos/products/ProductDaoFactory.js'
 import { asDto } from '../dtos/ProductDTO.js'
+import logger from '../utils/logger.js'
 
 export default class ProductsRepository {
     #dao
@@ -10,8 +11,8 @@ export default class ProductsRepository {
     }
 
     async getAll() {
-        const products = await this.#dao.getAll()
-        return products
+        const products = asDto(await this.#dao.getAll())
+        return products.map(p => new Product(p));
     }
 
     async getById(id) {
