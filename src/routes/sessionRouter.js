@@ -22,10 +22,7 @@ sessionRouter.get('/register', logger.logReqInfo, (req, res) => {
     res.render('register');
 })
 
-sessionRouter.post(
-    '/register',
-    passport.authenticate('register', { failureRedirect: '/register/error' }),
-    (req, res) => { res.redirect('/login') });
+sessionRouter.post('/register', passport.authenticate('register', { failureRedirect: '/register/error' }), (req, res) => { res.redirect('/login') });
 
 sessionRouter.get('/register/error', logger.logReqInfo, (req, res) => {
     res.render('autherror', { registerError: true })
