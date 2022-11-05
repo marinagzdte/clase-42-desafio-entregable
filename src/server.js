@@ -6,6 +6,7 @@ import { engine } from 'express-handlebars';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import sessionRouter from './routes/sessionRouter.js';
+import productRouter from './routes/productRouter.js';
 import compression from 'compression';
 import logger from './utils/logger.js';
 import ProductsRepository from './repositories/ProductsRepository.js';
@@ -52,7 +53,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
 app.use(sessionRouter)
-//app.use(productRouter)
+app.use("/api/productos", productRouter)
 
 app.all('*', logger.logReqWarn, (req, res) => {
     res.send('Ruta y metodo no implementados.')
