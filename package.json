@@ -30,5 +30,11 @@
     "sqlite": "^4.1.2",
     "sqlite3": "^5.0.11",
     "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.1.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.1"
   }
 }
